@@ -3,15 +3,15 @@ pipeline {
     stages {
         stage('Tests') {
             steps {
-//                 script {
-//                    docker.image('node:10-stretch').inside { c ->
+                 script {
+                    docker.image('node:18').inside { 
                         echo 'Building..'
                         sh 'npm install'
                         echo 'Testing..'
                         sh 'npm test'
 //                         sh "docker logs ${c.id}"
-//                    }
-//                 }
+                    }
+                 }
             }
         }
         stage('Build and push docker image') {
