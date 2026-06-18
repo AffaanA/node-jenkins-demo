@@ -24,7 +24,7 @@ pipeline {
         stage('Build and push docker image') {
             steps {
                 script {
-                    def dockerImage = docker.build("antonml/node-demo:master")
+                    def dockerImage = docker.build("affaana/node-demo:master")
                     docker.withRegistry('', 'demo-docker') {
                         dockerImage.push('master')
                     }
@@ -41,9 +41,9 @@ pipeline {
                         sh 'docker rm node-demo || true'
                         sh 'docker rmi antonml/node-demo:current || true'
                         
-                        sh 'docker pull antonml/node-demo:master'
-                        sh 'docker tag antonml/node-demo:master antonml/node-demo:current'
-                        sh 'docker run -d --name node-demo -p 80:3000 antonml/node-demo:current'
+                        sh 'docker pull affaana/node-demo:master'
+                        sh 'docker tag affaana/node-demo:master affaana/node-demo:current'
+                        sh 'docker run -d --name node-demo -p 80:3000 affaana/node-demo:current'
                     }
                 }
             }
